@@ -1,49 +1,28 @@
-# Welcome to [Astro](https://astro.build)
+# Frontend Mentor Project: Social Media Dashboard with Theme Switcher Master
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
+We’ll live code this Frontend Mentor project using Astro, Open Props, SCSS, and more!
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+📽️ Videos 📽️
+- Video 1 (with corresponding branch): https://youtu.be/xVlXTl7Ul70
+- Video 2 (with corresponding branch): https://youtu.be/edeorL276x0
 
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
 
+🔗  Key Links 🔗
+- Challenge page: https://www.frontendmentor.io/challenges/social-media-dashboard-with-theme-switcher-6oY8ozp_H
+- GitHub: https://github.com/coding-in-public/fem-social-media-dashboard-with-theme-switcher
 
-## 🚀 Project Structure
+🔗  Key Links 🔗
+- Astro: https://astro.build
+- Open Props: https://open-props.style/
+- Astro Icon: https://www.npmjs.com/package/astro-icon
+- Raycast: https://www.raycast.com/
+- Pastebot: https://tapbots.com/pastebot/
 
-Inside of your Astro project, you'll see the following folders and files:
+---------------------------------------
 
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                | Action                                             |
-| :--------------------- | :------------------------------------------------- |
-| `npm install`          | Installs dependencies                              |
-| `npm run dev`          | Starts local dev server at `localhost:3000`        |
-| `npm run build`        | Build your production site to `./dist/`            |
-| `npm run preview`      | Preview your build locally, before deploying       |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro preview` |
-| `npm run astro --help` | Get help using the Astro CLI                       |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+🌐 Connect With Me 🌐
+- Website: https://codinginpublic.dev
+- Blog: https://chrispennington.blog
+- Twitter: https://twitter.com/cpenned
+- Patreon: https://www.patreon.com/coding_in_public
+- Buy Me a Coffee: https://www.buymeacoffee.com/chrispennington
