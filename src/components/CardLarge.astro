@@ -1,0 +1,36 @@
+---
+// library imports
+import { Icon } from "astro-icon";
+
+// helpers
+import { formatNumberWithThousands } from "../ts/utils";
+
+export interface Props {
+  handle: string;
+  subs: number;
+  today: number;
+  icon: string;
+  subTitle: string;
+  positive: boolean;
+}
+
+const { handle, subs, today, icon, subTitle, positive } = Astro.props;
+---
+
+<article>
+  <a href="#">
+    <Icon name={icon} width="24" />
+    <span>{handle}</span>
+  </a>
+  <h3>
+    <span class="num"
+      >{subs > 10000 ? formatNumberWithThousands(subs) : subs}
+    </span>
+    <span class="sub">{subTitle}</span>
+  </h3>
+  <p>
+    <Icon name={positive ? "icon-up" : "icon-down"} width="24" />
+    <span>{today > 10000 ? formatNumberWithThousands(today) : today}</span>
+    <span>Today</span>
+  </p>
+</article>
