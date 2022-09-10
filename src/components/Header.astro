@@ -19,17 +19,111 @@ const totalFollowers = Object.values(data.subscribers)
   </div>
   <div class="switch-wrapper">
     <label for="theme">Dark Mode</label>
-    <input type="checkbox" role="switch" id="theme" />
+    <div class="switch">
+      <input type="checkbox" class="link" role="switch" id="theme" />
+      <span class="checkmark"></span>
+    </div>
   </div>
 </header>
 
+<style lang="scss">
+  header {
+    display: flex;
+    gap: var(--size-4);
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-wrapper {
+    display: grid;
+    h1 {
+      font-size: var(--font-size-fluid-1);
+      line-height: 1.1;
+    }
+    p {
+      color: var(--text-secondary);
+    }
+  }
+  .switch-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--size-2);
+  }
+
+  @media only screen and (max-width: 400px) {
+    .switch-wrapper {
+      flex-basis: 100%;
+      justify-content: space-between;
+    }
+  }
+  .switch {
+    position: relative;
+    width: var(--size-8);
+    height: var(--size-5);
+    background: var(--toggle);
+    border-radius: 100vmax;
+
+    [role="switch"] {
+      appearance: none;
+      position: absolute;
+      inset: 0;
+      border-radius: 100vmax;
+      cursor: pointer;
+    }
+
+    [role="switch"]:checked + .checkmark {
+      translate: calc(100% + var(--size-2) - 2px) -50%;
+      left: auto;
+    }
+
+    .checkmark {
+      pointer-events: none;
+      width: var(--size-4);
+      height: var(--size-4);
+      background-color: var(--bg);
+      border-radius: 100vmax;
+      position: absolute;
+      top: 50%;
+      left: 2px;
+      translate: 0 -50%;
+      transition: translate 0ms var(--ease-squish-5);
+    }
+  }
+
+  label {
+    cursor: pointer;
+  }
+</style>
+
 <script>
-  const defaultTheme = window.matchMedia(
-    "(prefers-color-scheme: dark)"
-  ).matches;
-  let dataTheme = defaultTheme ? "dark" : "light";
+  const label = document.querySelector('[for="theme"]');
+  const themeSwitch = document.querySelector('[role="switch"]');
+  const checkMark = document.querySelector(".checkmark");
+
+  let defaultTheme = localStorage.getItem("dashboard.theme");
+
+  if (defaultTheme == null) {
+    defaultTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  }
+
+  // themeSwitch.checked = defaultTheme === "light" ? true : false;
+  // document.documentElement.dataset.theme = defaultTheme;
+
+  const updateTheme = (newTheme) => {
+    themeSwitch.checked = newTheme === "light" ? true : false;
+    document.documentElement.dataset.theme = newTheme;
+    label.textContent = newTheme === "light" ? "Dark Mode" : "Light Mode";
+    localStorage.setItem("dashboard.theme", newTheme);
+  };
+  updateTheme(defaultTheme);
+
   document.querySelector("#theme").addEventListener("change", (e) => {
-    dataTheme = dataTheme === "light" ? "dark" : "light";
-    document.documentElement.dataset.theme = dataTheme;
+    checkMark.style.transitionDuration = "150ms";
+    let newTheme =
+      document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    updateTheme(newTheme);
   });
 </script>

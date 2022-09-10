@@ -7,39 +7,56 @@ import CardSmall from "../components/CardSmall.astro";
 
 // data imports
 import data from "../data/social";
-const cardLargeData = Object.values(data.subscribers);
+const cardLargeData = Object.entries(data.subscribers);
 const cardSmallData = Object.values(data.today);
 ---
 
 <Layout title="Social Media Dashboard">
   <main>
     <Header />
-    <Section title="Overview cards" titleVisible={false}>
+    <Section
+      classes="card-section card-section--overview"
+      title="Overview cards"
+      titleVisible={false}
+    >
       {
         cardLargeData.map((card) => (
           <CardLarge
-            handle={card.handle}
-            subs={card.subs}
-            today={card.today}
-            icon={card.icon}
-            subTitle={card.subTitle}
-            positive={card.positive}
+            type={card[0]}
+            handle={card[1].handle}
+            subs={card[1].subs}
+            today={card[1].today}
+            icon={card[1].icon}
+            subTitle={card[1].subTitle}
+            positive={card[1].positive}
           />
         ))
       }
     </Section>
-    <Section title="Overview — Today">
-      {
-        cardSmallData.map((card) => (
-          <CardSmall
-            title={card.title}
-            icon={card.icon}
-            positive={card.positive}
-            number={card.number}
-            percentage={card.percentage}
-          />
-        ))
-      }
+    <Section
+      classes="card-section card-section--today"
+      title="Overview — Today"
+    >
+      <div class="today-wrapper">
+        {
+          cardSmallData.map((card) => (
+            <CardSmall
+              title={card.title}
+              icon={card.icon}
+              positive={card.positive}
+              number={card.number}
+              percentage={card.percentage}
+            />
+          ))
+        }
+      </div>
     </Section>
   </main>
 </Layout>
+
+<style is:global>
+  main {
+    padding-block: var(--size-fluid-2);
+    margin-inline: max((calc(100vw - 75rem) / 2), var(--size-fluid-2));
+  }
+</style>

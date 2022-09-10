@@ -13,21 +13,24 @@ export interface Props {
   positive: boolean;
 }
 
-const { title, icon, number, positive, percentage } = Astro.props;
+const { title, icon, number, positive, percentage } = Astro.props as Props;
 ---
 
-<article>
+<article class="card">
   <div class="flex-between">
     <p class="title">{title}</p>
     <a href="#">
-      <Icon name={icon} width="24" />
+      <Icon name={icon} width="20" height="20" class="link" />
     </a>
   </div>
   <div class="flex-between">
     <p class="number">
       {number > 10000 ? formatNumberWithThousands(number) : number}
     </p>
-    <p>
+    <p
+      class="percentage"
+      style={`color: var(--accent-${positive ? "green" : "red"})`}
+    >
       <Icon name={positive ? "icon-up" : "icon-down"} width="24" />
       <span
         >{
@@ -39,3 +42,19 @@ const { title, icon, number, positive, percentage } = Astro.props;
     </p>
   </div>
 </article>
+
+<style>
+  .card {
+    display: grid;
+    gap: var(--size-2);
+    padding: var(--size-fluid-2);
+  }
+
+  .number {
+    font-size: var(--font-size-fluid-1);
+    font-weight: bold;
+  }
+  .title {
+    color: var(--text-secondary);
+  }
+</style>

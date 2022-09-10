@@ -6,6 +6,7 @@ import { Icon } from "astro-icon";
 import { formatNumberWithThousands } from "../ts/utils";
 
 export interface Props {
+  type: string;
   handle: string;
   subs: number;
   today: number;
@@ -14,23 +15,95 @@ export interface Props {
   positive: boolean;
 }
 
-const { handle, subs, today, icon, subTitle, positive } = Astro.props;
+const { type, handle, subs, today, icon, subTitle, positive } =
+  Astro.props as Props;
 ---
 
-<article>
-  <a href="#">
-    <Icon name={icon} width="24" />
-    <span>{handle}</span>
-  </a>
-  <h3>
-    <span class="num"
-      >{subs > 10000 ? formatNumberWithThousands(subs) : subs}
-    </span>
-    <span class="sub">{subTitle}</span>
-  </h3>
-  <p>
-    <Icon name={positive ? "icon-up" : "icon-down"} width="24" />
-    <span>{today > 10000 ? formatNumberWithThousands(today) : today}</span>
-    <span>Today</span>
-  </p>
+<article class="card">
+  <div
+    style={`border-top-right-radius: .2rem; border-top-left-radius: .2rem; height: 3px; background: var(--social-${type})`}
+  >
+  </div><div class="content">
+    <a href="#" class="handle link">
+      <Icon name={icon} width="24" />
+      <span>{handle}</span>
+    </a>
+    <h3>
+      <span class="num"
+        >{subs > 10000 ? formatNumberWithThousands(subs) : subs}
+      </span>
+      <span class="sub">{subTitle}</span>
+    </h3>
+    <p
+      class="percentage"
+      style={`color: var(--accent-${positive ? "green" : "red"})`}
+    >
+      <Icon name={positive ? "icon-up" : "icon-down"} width="24" />
+      <span>{today > 10000 ? formatNumberWithThousands(today) : today}</span>
+      <span>Today</span>
+    </p>
+  </div>
 </article>
+
+<style lang="scss">
+  .content {
+    display: grid;
+    align-items: center;
+    gap: var(--size-2);
+    padding: var(--size-fluid-4);
+  }
+
+  .handle {
+    border-radius: 100vmax;
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    justify-self: center;
+    gap: 0.2rem;
+    text-decoration: none;
+    color: var(--text-secondary);
+    padding: 0.4rem;
+  }
+
+  h3 {
+    display: grid;
+    place-items: center;
+    line-height: 1.2;
+
+    .num {
+      font-size: var(--font-size-fluid-2);
+      font-weight: bold;
+    }
+    .sub {
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      font-size: var(--font-size-00);
+    }
+  }
+</style>
+
+<style lang="scss" is:global>
+  .link {
+    transition: box-shadow 200ms var(--ease-squish-3);
+    box-shadow: 0 0 0 -2px var(--bg), 0 0 0 -4px var(--text-secondary);
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--text-secondary);
+    }
+  }
+  .percentage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.1rem;
+    font-size: calc(var(--font-size-0) * 0.8);
+
+    & svg {
+      width: 0.5rem;
+    }
+  }
+</style>
